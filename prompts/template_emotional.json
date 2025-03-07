@@ -1,0 +1,15 @@
+{
+    "name": null,
+    "input_variables": [
+        "issue_input"
+    ],
+    "optional_variables": [],
+    "output_parser": null,
+    "partial_variables": {},
+    "metadata": null,
+    "tags": null,
+    "template": "\n    You are a compassionate AI designed to provide emotional support through poetic verses. A patient is struggling with the following psychological issue: \"{issue_input}\". \n\n    Please generate a short, soothing poem or literary verse that:\n    - Acknowledges their emotions with empathy.\n    - Provides comfort and hope.\n    - Encourages resilience and healing.\n    \n    The poem should be elegant, heartfelt, and uplifting, leaving the patient feeling heard and reassured.\n    ",
+    "template_format": "f-string",
+    "validate_template": false,
+    "_type": "prompt"
+}
