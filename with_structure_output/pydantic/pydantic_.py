@@ -1,19 +1,35 @@
+# from pydantic import BaseModel,EmailStr,Field
+# from typing import Optional
+# # example one
+# class Student(BaseModel):
+#     name: str
+#     age: Optional[int] = None
+#     email: EmailStr
+#     cgpa: float = Field(gt=0, lt=4.0, default=2.0)
+    
+# new_student = {'name': 'Joe', 'email': 'abc@hi.com'}
+
+# student = Student(**new_student)
+# student_dict = dict(student)
+# print(student_dict)
+# student_json = student.model_dump_json()
+# print(student_json)
+
+# example two
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 from typing import TypedDict,Annotated,Optional,Literal
-
-load_dotenv()
+from pydantic import BaseModel,Field
 
 model = ChatOpenAI(max_completion_tokens=50)
 
 class Review(TypedDict):
-    key_theme = Annotated[list[str], "Write down all the key themes of the review"]
-    summary: Annotated[str, "The brief summary of the review"]
-    # sentiment: Annotated[str, "Return sentiment of the review either positive, negative or neutral"]
-    sentiment: Annotated[Literal['pos','neg'], "Return sentiment of the review either positive, negative or neutral"]
-    pros: Annotated[Optional[list[str]], "List of pros of the review"]
-    cons: Annotated[Optional[list[str]], "List of cons of the review"]
-    name: Annotated[Optional[str], "Write the name of the reviewer"]
+    key_themes: list[str] = Field(description='Write down all the key themes of the review')
+    summary: str = Field(description='The brief summary of the review')
+    sentiment: Literal['pos','neg'] = Field(description='Return sentiment of the review either positive, negative or neutral')
+    pros: Optional[list[str]] = Field(default=None ,description='List of pros of the review')
+    cons: Optional[list[str]] = Field(default=None ,description='List of cons of the review')
+    name: Optional[str] = Field(default=None ,description='Write the name of the reviewer')
     
 structured_model = model.with_structured_output(Review)
 
@@ -45,5 +61,3 @@ I
 ''')
 
 print(result)
-print(result['summary'])
-print(result['sentiment'])
