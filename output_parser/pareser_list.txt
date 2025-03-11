@@ -1,0 +1,4 @@
+1) StrOutputParse
+2) JsonOutputParser
+3) StructureOutputParser
+4) PydanticOutputParser

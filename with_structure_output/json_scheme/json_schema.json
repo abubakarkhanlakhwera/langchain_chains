@@ -1,5 +1,5 @@
 {
-    "titl":"student",
+    "title":"student",
     "description":"scheme about students",
     "type":"object",
     "properties":{
