@@ -39,3 +39,4 @@ poem = poem_chain.invoke({})
 merged_chain = parallel | linear
 result = merged_chain.invoke({'poem':poem})
 print(result)
+merged_chain.get_graph().print_ascii()
